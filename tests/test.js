@@ -48,7 +48,7 @@ basic_function_tests = [
 // ++++++++++++++++++
 // TEST functionALITY
 // ++++++++++++++++++
-function testFunctionality(){
+const testFunctionality = [
   function testParseFullDays(){
     const ics = `
 BEGIN:VCALENDAR
@@ -63,14 +63,31 @@ END:VEVENT
 END:VCALENDAR
     `; 
 
-    const events = parseICS(ics_template);
+    const events = parseICS(ics);
     assert.deepStrictEqual(events[0].start, new Date(2023, 4, 12))
     assert.deepStrictEqual(events[0].end, new Date(2023, 4, 12))
-  }
-  function testNormalEvent(){}
-  function testAllDayEvent(){}
-  function testEventWithoutTimezone(){}
-}
+  },
+  function testNormalEvent(){
+    const ics = `
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Test Calendar//EN
+BEGIN:VEVENT
+SUMMARY:Dinner with Family
+DTSTART:20230510T170000
+DTEND:20230510T190000
+DESCRIPTION:Dinner at home with family
+END:VEVENT
+END:VCALENDAR
+    `; 
+
+    const events = parseICS(ics);
+    assert.deepStrictEqual(events[0].start, new Date(2023, 4, 10, 17, 0))
+    assert.deepStrictEqual(events[0].end, new Date(2023, 4, 10, 19, 0))
+  },
+  function testAllDayEvent(){},
+  function testEventWithoutTimezone(){},
+]
 
 basic_function_tests.forEach((testFunction) => {
   try{
@@ -81,3 +98,13 @@ basic_function_tests.forEach((testFunction) => {
   }
 })
 
+
+
+testFunctionality.forEach((testFunction) => {
+  try{
+    testFunction();
+  }catch (error){
+    console.log(`${testFunction.name} failed.\n`, error.message)
+    process.exit(1)
+  }
+})
