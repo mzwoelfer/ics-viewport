@@ -45,7 +45,6 @@ function testFunctionality(){
 basic_function_tests.forEach((testFunction) => {
   try{
     testFunction();
-    console.log(`${testFunction.name} passed`)
   }catch (error){
     console.log(`${testFunction.name} failed`, error.message)
     process.exit(1)
