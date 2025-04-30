@@ -49,7 +49,24 @@ basic_function_tests = [
 // TEST functionALITY
 // ++++++++++++++++++
 function testFunctionality(){
-  function testParseFullDays(){}
+  function testParseFullDays(){
+    const ics = `
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Test Calendar//EN
+BEGIN:VEVENT
+SUMMARY:Birthday Party
+DTSTART:20230512
+DTEND:20230512
+DESCRIPTION:Celebrate John's birthday
+END:VEVENT
+END:VCALENDAR
+    `; 
+
+    const events = parseICS(ics_template);
+    assert.deepStrictEqual(events[0].start, new Date(2023, 4, 12))
+    assert.deepStrictEqual(events[0].end, new Date(2023, 4, 12))
+  }
   function testNormalEvent(){}
   function testAllDayEvent(){}
   function testEventWithoutTimezone(){}
