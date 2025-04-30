@@ -10,6 +10,7 @@ SUMMARY:Birthday Party
 DTSTART:20230512
 DTEND:20230512
 DESCRIPTION:Celebrate John's birthday
+LOCATION:Sesamestreet 69, 1337 Coolcity. GERMANY
 END:VEVENT
 END:VCALENDAR
   `;
@@ -39,6 +40,8 @@ basic_function_tests = [
     assert.strictEqual(events[0].description, "Celebrate John's birthday")
   },
   function testDetectsLocation() {
+    const events = parseICS(ics_template);
+    assert.strictEqual(events[0].location, "Sesamestreet 69, 1337 Coolcity. GERMANY")
   },
 ]
 
