@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICS Viewport</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-6">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-4">ICS Viewport</h1>
+    <input id="icsUrl" type="url" placeholder="Paste ICS URL..." class="w-full p-2 border rounded mb-4" />
+    <button id="loadBtn" class="bg-blue-600 text-white px-4 py-2 rounded">Load Events</button>
+    <div id="eventContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"></div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+
