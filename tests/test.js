@@ -26,7 +26,10 @@ basic_function_tests = [
     const events = parseICS(ics_template);
     assert.strictEqual(events[0].title, 'Birthday Party')
   },
-  function testDetectsStart() {},
+  function testDetectsStart() {
+    const events = parseICS(ics_template);
+    assert.deepStrictEqual(events[0].start, new Date(2023, 4, 12))
+  },
   function testDetectsEnd() {},
   function testDetectsDescription() {},
   function testDetectsLocation() {},
