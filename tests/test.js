@@ -19,12 +19,12 @@ END:VCALENDAR
 // ++++++++++++++++++++
 basic_function_tests = [
   function testParserReturnsList() {
-    console.log("parsing", ics_template)
     const events = parseICS(ics_template);
     assert.strictEqual(events.length, 1)
   },
   function testDetectsTitle() {
     const events = parseICS(ics_template);
+    assert.strictEqual(events[0].title, 'Birthday Party')
   },
   function testDetectsStart() {},
   function testDetectsEnd() {},
