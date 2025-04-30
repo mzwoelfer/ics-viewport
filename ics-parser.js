@@ -46,7 +46,7 @@ function parseICS(text) {
       if (key === 'DTSTART') current.start = parseICSTime(value);
       if (key === 'DTEND') current.end = parseICSTime(value);
       if (key === 'SUMMARY') current.title = value;
-      if (key === 'DESCRIPTION') current.desc = value;
+      if (key === 'DESCRIPTION') current.description = value;
       if (key === 'LOCATION') current.location = value;
     }
   }

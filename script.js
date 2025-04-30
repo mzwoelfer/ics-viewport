@@ -18,14 +18,14 @@ function renderEvents(events) {
   const container = document.getElementById('eventContainer');
   container.innerHTML = '';
 
-  events.forEach(({ title, start, end, desc, location }) => {
+  events.forEach(({ title, start, end, description, location }) => {
     const tile = document.createElement('div');
     tile.className = 'bg-white shadow-md p-4 rounded';
     tile.innerHTML = `
       <h2 class="text-xl font-bold">${title}</h2>
       <p class="text-sm text-gray-600">${start.toLocaleString()} - ${end.toLocaleTimeString()}</p>
       <p class="text-sm text-gray-600">${location}</p>
-      <p class="mt-2">${desc}</p>
+      <p class="mt-2">${description}</p>
     `;
     container.appendChild(tile);
   });
