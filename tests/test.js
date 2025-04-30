@@ -85,7 +85,24 @@ END:VCALENDAR
     assert.deepStrictEqual(events[0].start, new Date(2023, 4, 10, 17, 0))
     assert.deepStrictEqual(events[0].end, new Date(2023, 4, 10, 19, 0))
   },
-  function testAllDayEvent(){},
+  function testAllDayEvent(){
+    const ics = `
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Test Calendar//EN
+BEGIN:VEVENT
+SUMMARY:Conference
+DTSTART:20230615
+DTEND:20230616
+DESCRIPTION:Attend the annual tech conference
+END:VEVENT
+END:VCALENDAR
+    `; 
+
+    const events = parseICS(ics);
+    assert.deepStrictEqual(events[0].start, new Date(2023, 5, 15))
+    assert.deepStrictEqual(events[0].end, new Date(2023, 5, 16))
+  },
   function testEventWithoutTimezone(){},
 ]
 

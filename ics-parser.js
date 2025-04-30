@@ -1,5 +1,5 @@
 
-function parseICSTime(val) {
+function parseICSTime(val, isEnd = false) {
   // Handle full-day dates 
   if (val.includes('T')) {
     const match = val.match(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})/);
@@ -11,7 +11,11 @@ function parseICSTime(val) {
     const match = val.match(/(\d{4})(\d{2})(\d{2})/);
     if (!match) return null;
     const [_, y, m, d] = match;
-    return new Date(+y, +m - 1, +d);
+    let date = new Date(+y, +m - 1, +d);
+    if (isEnd) {
+      date.setDate(date.getDate());
+    }
+    return date
   }
 }
 
@@ -44,7 +48,7 @@ function parseICS(text) {
       const key = rawKey.split(';')[0];
 
       if (key === 'DTSTART') current.start = parseICSTime(value);
-      if (key === 'DTEND') current.end = parseICSTime(value);
+      if (key === 'DTEND') current.end = parseICSTime(value, true);
       if (key === 'SUMMARY') current.title = value;
       if (key === 'DESCRIPTION') current.description = value;
       if (key === 'LOCATION') current.location = value;
