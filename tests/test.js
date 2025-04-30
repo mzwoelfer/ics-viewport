@@ -49,7 +49,7 @@ basic_function_tests.forEach((testFunction) => {
   try{
     testFunction();
   }catch (error){
-    console.log(`${testFunction.name} failed`, error.message)
+    console.log(`${testFunction.name} failed.\n`, error.message)
     process.exit(1)
   }
 })
